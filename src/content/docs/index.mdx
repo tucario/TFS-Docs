@@ -1,0 +1,46 @@
+---
+title: TranSFlator Documentation
+description: Translate your Salesforce org in minutes with AI. Complete guides for the desktop app, account panel, AI engines, and the API.
+template: splash
+hero:
+  tagline: Translate your entire Salesforce org with AI, without leaving your laptop.
+  actions:
+    - text: Install the app
+      link: /getting-started/install/
+      icon: right-arrow
+    - text: How it works
+      link: /getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Where to start
+
+<CardGrid>
+  <Card title="First 10 minutes" icon="rocket">
+    Install the desktop app, connect your first org with OAuth, and
+    batch-translate a handful of custom fields. [Start →](/getting-started/install/)
+  </Card>
+  <Card title="Account & billing" icon="setting">
+    Sign up on the panel, generate an API token, top up AI credits,
+    and manage your subscription. [Panel docs →](/account-panel/sign-up/)
+  </Card>
+  <Card title="Pick an AI engine" icon="puzzle">
+    Compare Gemini, Claude, Mistral, and DeepSeek on speed, cost, and
+    language coverage. [Engines overview →](/ai-engines/overview/)
+  </Card>
+  <Card title="Security model" icon="approve-check">
+    PKCE OAuth, AES-256 refresh tokens, zero telemetry, and where
+    your data actually goes. [Read the details →](/security/)
+  </Card>
+  <Card title="Troubleshooting" icon="warning">
+    OAuth redirect errors, managed-package skips, half-applied
+    deploys. [Fix it →](/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>

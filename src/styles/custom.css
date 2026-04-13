@@ -1,0 +1,11 @@
+/* TranSFlator brand accent */
+:root {
+  --sl-color-accent-low: #fff4ee;
+  --sl-color-accent: #ff6a2c;
+  --sl-color-accent-high: #c44a10;
+}
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #3b1a0a;
+  --sl-color-accent: #ff864f;
+  --sl-color-accent-high: #ffc3a3;
+}
