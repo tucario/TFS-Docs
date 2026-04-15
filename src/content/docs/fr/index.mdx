@@ -1,0 +1,43 @@
+---
+title: Documentation TranSFlator
+description: Traduisez votre organisation Salesforce en quelques minutes grâce à l'IA. Guides complets pour l'application de bureau, le panneau de compte, les moteurs d'IA et l'API.
+template: splash
+hero:
+  image:
+    html: '<img src="/logo.svg" alt="TranSFlator" style="width:300px;height:300px;" />'
+  tagline: Traduisez toute votre organisation Salesforce avec l'IA, sans quitter votre ordinateur.
+  actions:
+    - text: Installer l'application
+      link: /fr/getting-started/install/
+      icon: right-arrow
+    - text: Comment ça marche
+      link: /fr/getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Par où commencer
+
+<CardGrid>
+  <Card title="Les 10 premières minutes" icon="rocket">
+    Installez l'application de bureau, connectez votre première organisation avec OAuth et traduisez par lots quelques champs personnalisés. [Démarrer →](/fr/getting-started/install/)
+  </Card>
+  <Card title="Compte et facturation" icon="setting">
+    Inscrivez-vous sur le panneau, générez un jeton API, rechargez vos crédits d'IA et gérez votre abonnement. [Docs du panneau →](/fr/account-panel/sign-up/)
+  </Card>
+  <Card title="Choisir un moteur d'IA" icon="puzzle">
+    Comparez Gemini, Claude, Mistral et DeepSeek sur la vitesse, le coût et la couverture linguistique. [Aperçu des moteurs →](/fr/ai-engines/overview/)
+  </Card>
+  <Card title="Modèle de sécurité" icon="approve-check">
+    OAuth PKCE, jetons d'actualisation AES-256, zéro télémétrie et où vont réellement vos données. [Lire les détails →](/fr/security/)
+  </Card>
+  <Card title="Dépannage" icon="warning">
+    Erreurs de redirection OAuth, sauts de paquets gérés, déploiements partiellement appliqués. [Réparer →](/fr/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>

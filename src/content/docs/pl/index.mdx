@@ -1,0 +1,48 @@
+---
+title: Dokumentacja Transflator
+description: Przetłumacz swoją organizację Salesforce w kilka minut dzięki AI. Kompleksowe przewodniki po aplikacji desktopowej, panelu konta, silnikach AI i API.
+template: splash
+hero:
+  image:
+    html: '<img src="/logo.svg" alt="Transflator" style="width:300px;height:300px;" />'
+  tagline: Przetłumacz całą swoją organizację Salesforce za pomocą AI, nie odchodząc od laptopa.
+  actions:
+    - text: Zainstaluj aplikację
+      link: /pl/getting-started/install/
+      icon: right-arrow
+    - text: Jak to działa
+      link: /pl/getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Od czego zacząć
+
+<CardGrid>
+  <Card title="Pierwsze 10 minut" icon="rocket">
+    Zainstaluj aplikację desktopową, połącz swoją pierwszą organizację przez OAuth i
+    przetłumacz zbiorczo kilka pól niestandardowych. [Start →](/pl/getting-started/install/)
+  </Card>
+  <Card title="Konto i płatności" icon="setting">
+    Zarejestruj się w panelu, wygeneruj token API, doładuj kredyty AI
+    i zarządzaj subskrypcją. [Dokumentacja panelu →](/pl/account-panel/sign-up/)
+  </Card>
+  <Card title="Wybierz silnik AI" icon="puzzle">
+    Porównaj Gemini, Claude, Mistral i DeepSeek pod kątem szybkości, kosztów i
+    obsługiwanych języków. [Przegląd silników →](/pl/ai-engines/overview/)
+  </Card>
+  <Card title="Model bezpieczeństwa" icon="approve-check">
+    PKCE OAuth, odświeżające tokeny AES-256, brak telemetrii i informacje o tym,
+    dokąd trafiają Twoje dane. [Przeczytaj szczegóły →](/pl/security/)
+  </Card>
+  <Card title="Rozwiązywanie problemów" icon="warning">
+    Błędy przekierowania OAuth, pomijanie pakietów zarządzanych (managed packages), częściowo zastosowane
+    wdrożenia (deploys). [Napraw to →](/pl/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>

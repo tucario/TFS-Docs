@@ -1,0 +1,43 @@
+---
+title: Documentación de Transflator
+description: Traduzca su organización de Salesforce en minutos con IA. Guías completas para la aplicación de escritorio, panel de cuenta, motores de IA y la API.
+template: splash
+hero:
+  image:
+    html: '<img src="/logo.svg" alt="Transflator" style="width:300px;height:300px;" />'
+  tagline: Traduzca toda su organización de Salesforce con IA, sin salir de su computadora portátil.
+  actions:
+    - text: Instalar la aplicación
+      link: /es/getting-started/install/
+      icon: right-arrow
+    - text: Cómo funciona
+      link: /es/getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Por dónde empezar
+
+<CardGrid>
+  <Card title="Primeros 10 minutos" icon="rocket">
+    Instale la aplicación de escritorio, conecte su primera organización con OAuth y traduzca en lote un puñado de campos personalizados. [Empezar →](/es/getting-started/install/)
+  </Card>
+  <Card title="Cuenta y facturación" icon="setting">
+    Regístrese en el panel, genere un token de API, recargue créditos de IA y administre su suscripción. [Docs del Panel →](/es/account-panel/sign-up/)
+  </Card>
+  <Card title="Elija un motor de IA" icon="puzzle">
+    Compare Gemini, Claude, Mistral y DeepSeek en velocidad, costo y cobertura de idiomas. [Resumen de motores →](/es/ai-engines/overview/)
+  </Card>
+  <Card title="Modelo de seguridad" icon="approve-check">
+    PKCE OAuth, tokens de actualización AES-256, cero telemetría y a dónde van realmente sus datos. [Leer los detalles →](/es/security/)
+  </Card>
+  <Card title="Resolución de problemas" icon="warning">
+    Errores de redireccionamiento OAuth, saltos de paquetes gestionados, despliegues aplicados a medias. [Solucionarlo →](/es/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>

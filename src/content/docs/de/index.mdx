@@ -1,0 +1,48 @@
+---
+title: Transflator-Dokumentation
+description: Übersetzen Sie Ihre Salesforce-Org in wenigen Minuten mit KI. Vollständige Anleitungen für die Desktop-App, das Account-Panel, die KI-Engines und die API.
+template: splash
+hero:
+  image:
+    html: '<img src="/logo.svg" alt="Transflator" style="width:300px;height:300px;" />'
+  tagline: Übersetzen Sie Ihre gesamte Salesforce-Org mit KI, ohne Ihren Laptop zu verlassen.
+  actions:
+    - text: App installieren
+      link: /de/getting-started/install/
+      icon: right-arrow
+    - text: So funktioniert es
+      link: /de/getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Wo Sie anfangen können
+
+<CardGrid>
+  <Card title="Die ersten 10 Minuten" icon="rocket">
+    Installieren Sie die Desktop-App, verbinden Sie Ihre erste Org über OAuth und
+    übersetzen Sie eine Handvoll benutzerdefinierter Felder im Batch-Modus. [Start →](/de/getting-started/install/)
+  </Card>
+  <Card title="Konto & Abrechnung" icon="setting">
+    Registrieren Sie sich im Panel, generieren Sie ein API-Token, laden Sie KI-Guthaben auf
+    und verwalten Sie Ihr Abonnement. [Panel-Dokumentation →](/de/account-panel/sign-up/)
+  </Card>
+  <Card title="Wählen Sie eine KI-Engine" icon="puzzle">
+    Vergleichen Sie Gemini, Claude, Mistral und DeepSeek hinsichtlich Geschwindigkeit, Kosten und
+    Sprachabdeckung. [Engines-Übersicht →](/de/ai-engines/overview/)
+  </Card>
+  <Card title="Sicherheitsmodell" icon="approve-check">
+    PKCE-OAuth, AES-256-Refresh-Tokens, Zero-Telemetry und wo
+    Ihre Daten tatsächlich landen. [Details lesen →](/de/security/)
+  </Card>
+  <Card title="Fehlerbehebung" icon="warning">
+    OAuth-Redirect-Fehler, Überspringen von Managed-Packages, halb angewendete
+    Deployments. [Beheben →](/de/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>

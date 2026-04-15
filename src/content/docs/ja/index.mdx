@@ -1,0 +1,43 @@
+---
+title: TranSFlator ドキュメント
+description: AIを使用して数分でSalesforce組織を翻訳します。デスクトップアプリ、アカウントパネル、AIエンジン、およびAPIの完全なガイド。
+template: splash
+hero:
+  image:
+    html: '<img src="/logo.svg" alt="TranSFlator" style="width:300px;height:300px;" />'
+  tagline: ラップトップを離れることなく、AIでSalesforce組織全体を翻訳します。
+  actions:
+    - text: アプリをインストールする
+      link: /ja/getting-started/install/
+      icon: right-arrow
+    - text: 仕組み
+      link: /ja/getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## はじめに
+
+<CardGrid>
+  <Card title="最初の10分" icon="rocket">
+    デスクトップアプリをインストールし、OAuthで最初の組織を接続して、いくつかのカスタムフィールドを一括翻訳します。[開始する →](/ja/getting-started/install/)
+  </Card>
+  <Card title="アカウントと請求" icon="setting">
+    パネルでサインアップし、APIトークンを生成し、AIクレジットを補充して、サブスクリプションを管理します。[パネルドキュメント →](/ja/account-panel/sign-up/)
+  </Card>
+  <Card title="AIエンジンの選択" icon="puzzle">
+    Gemini、Claude、Mistral、DeepSeekの速度、コスト、言語カバー範囲を比較します。[エンジン概要 →](/ja/ai-engines/overview/)
+  </Card>
+  <Card title="セキュリティモデル" icon="approve-check">
+    PKCE OAuth、AES-256リフレッシュトークン、ゼロテレメトリ、およびデータの実際の送信先。[詳細を読む →](/ja/security/)
+  </Card>
+  <Card title="トラブルシューティング" icon="warning">
+    OAuthリダイレクトエラー、管理パッケージのスキップ、半分適用されたデプロイ。[修正する →](/ja/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>

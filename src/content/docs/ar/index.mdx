@@ -1,0 +1,48 @@
+---
+title: توثيق Transflator
+description: قم بترجمة منظمة Salesforce الخاصة بك في دقائق باستخدام الذكاء الاصطناعي. أدلة كاملة لتطبيق سطح المكتب، ولوحة الحساب، ومحركات الذكاء الاصطناعي، وواجهة برمجة التطبيقات (API).
+template: splash
+hero:
+  image:
+    html: '<img src="/logo.svg" alt="Transflator" style="width:300px;height:300px;" />'
+  tagline: ترجم منظمة Salesforce بالكامل باستخدام الذكاء الاصطناعي، دون مغادرة حاسوبك المحمول.
+  actions:
+    - text: تثبيت التطبيق
+      link: /ar/getting-started/install/
+      icon: right-arrow
+    - text: كيف يعمل
+      link: /ar/getting-started/welcome/
+      icon: open-book
+      variant: minimal
+    - text: transflator.com
+      link: https://transflator.com
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## من أين تبدأ
+
+<CardGrid>
+  <Card title="أول 10 دقائق" icon="rocket">
+    قم بتثبيت تطبيق سطح المكتب، وربط منظمتك الأولى عبر OAuth، وقم بترجمة
+    مجموعة من الحقول المخصصة دفعة واحدة. [ابدأ ←](/ar/getting-started/install/)
+  </Card>
+  <Card title="الحساب والفواتير" icon="setting">
+    سجل في اللوحة، وقم بتوليد رمز API، واشحن رصيد الذكاء الاصطناعي،
+    وأدر اشتراكك. [وثائق اللوحة ←](/ar/account-panel/sign-up/)
+  </Card>
+  <Card title="اختر محرك ذكاء اصطناعي" icon="puzzle">
+    قارن بين Gemini و Claude و Mistral و DeepSeek من حيث السرعة والتكلفة وتغطية
+    اللغات. [نظرة عامة على المحركات ←](/ar/ai-engines/overview/)
+  </Card>
+  <Card title="نموذج الأمان" icon="approve-check">
+    PKCE OAuth، ورموز تحديث AES-256، وعدم وجود تتبع عن بعد (zero telemetry)، وأين
+    تذهب بياناتك بالفعل. [اقرأ التفاصيل ←](/ar/security/)
+  </Card>
+  <Card title="استكشاف الأخطاء وإصلاحها" icon="warning">
+    أخطاء إعادة توجيه OAuth، وتجاوز الحزم المدارة (managed-package skips)، والعمليات
+    المنشورة جزئياً. [أصلحها ←](/ar/troubleshooting/oauth-errors/)
+  </Card>
+</CardGrid>
