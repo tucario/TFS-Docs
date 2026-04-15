@@ -6,8 +6,12 @@ export default defineConfig({
   site: 'https://docs.transflator.com',
   integrations: [
     starlight({
-      title: 'TranSFlator Docs',
-      description: 'Documentation for TranSFlator — translate your Salesforce org with AI.',
+      title: 'Transflator Docs',
+      logo: {
+        src: './src/assets/logo.svg',
+        alt: 'Transflator',
+      },
+      description: 'Documentation for Transflator — translate your Salesforce org with AI.',
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/tucario/TransflatorDocumentation' },
         { icon: 'external', label: 'transflator.com', href: 'https://transflator.com' },

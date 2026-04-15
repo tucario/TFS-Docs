@@ -29,7 +29,10 @@ the authorization code is exchanged on your own machine.
 
 You are now connected. The connection shows up in the sidebar with
 a green status dot. Click it to open the translation grid for that
-org.
+org — TranSFlator will immediately scan the org for every
+translatable element:
+
+![TranSFlator scanning a connected Salesforce org, loading translations object by object.](../../../assets/screenshots/02-scanning-org.png)
 
 ## Using a custom domain
 
@@ -57,7 +60,3 @@ before running a full scan if you want to narrow the blast radius.
 
 [Run your first translation →](/getting-started/your-first-translation/)
 
-:::note[TODO]
-Add a screenshot of the "Add Connection" dialog and the permission
-screen that appears on the Salesforce side.
-:::

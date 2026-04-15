@@ -35,8 +35,9 @@ org to re-validate the session before loading the workspace. If the
 token was revoked or expired, you'll be prompted to re-authorise
 through the normal OAuth flow.
 
-:::note[TODO]
-Screenshots of the connection sidebar and the rename/delete context
-menu. Note about how the STF-only import flow creates a "pseudo
-connection" that has no refresh token.
-:::
+![The TranSFlator connections list with a local STF file, a DQS Playground sandbox, and a production org side by side.](../../../assets/screenshots/01-connections-list.png)
+
+The STF-only import flow (first row above) creates a "pseudo
+connection" that has no refresh token — it only holds the parsed
+contents of a `.stf` file and cannot deploy back to Salesforce
+until you attach a real org.

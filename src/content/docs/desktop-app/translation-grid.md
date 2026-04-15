@@ -39,7 +39,8 @@ both source and target.
 | `⌘/Ctrl + Shift + A` | Select all visible rows |
 | `⌘/Ctrl + D` | Mark row as "done" (reviewed) |
 
-:::note[TODO]
-Full screenshot of the grid with filter sidebar, search, and target
-column in Polish. Video of keyboard navigation.
-:::
+![The TranSFlator translation grid with the object sidebar, search, and source/target columns.](../../../assets/screenshots/04-translations-table.png)
+
+The left sidebar groups every translatable element by Salesforce
+object (Account, Case, Contact, …) with a running count so you
+always know how much is left.

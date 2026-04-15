@@ -3,6 +3,8 @@ title: Anthropic Claude
 description: Claude is the choice for nuanced copy, brand voice, and longer strings where tone matters. US and EU processing.
 ---
 
+<img src="/engine-logos/claude.svg" alt="Anthropic Claude logo" width="96" height="96" />
+
 Anthropic Claude is the nuance engine. If you care about tone,
 voice, and how the target language *sounds* to a native reader —
 especially for help text and onboarding copy — Claude is usually

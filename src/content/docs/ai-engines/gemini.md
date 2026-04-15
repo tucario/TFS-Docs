@@ -3,6 +3,8 @@ title: Google Gemini
 description: Gemini is the default AI engine — broad language coverage, solid results on business copy, four regional processing zones.
 ---
 
+<img src="/engine-logos/gemini.svg" alt="Google Gemini logo" width="96" height="96" />
+
 Google Gemini is TranSFlator's default AI engine. If you've just
 started with the product and haven't picked one yet, Gemini is the
 one running behind the scenes.

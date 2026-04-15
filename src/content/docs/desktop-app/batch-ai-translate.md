@@ -53,8 +53,8 @@ a 10-character field label costs 10 credits no matter which engine
 you use. See [AI credits](/account-panel/ai-credits/) for the full
 pricing model.
 
-:::note[TODO]
-Screenshot of the engine/region picker. Screenshot of the live
-progress banner. Worked example: 2000 rows on Gemini vs Claude,
-with actual costs and times.
-:::
+![A batch translation running to Brazilian Portuguese — 100 out of 273 rows done, 37% complete.](../../../assets/screenshots/05-translating-progress.png)
+
+The progress bar at the top of the grid is live: rows get filled
+in as the AI responds, and **Stop** cancels the remaining requests
+without losing the rows that already came back.

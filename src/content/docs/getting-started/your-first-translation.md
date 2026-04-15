@@ -43,6 +43,12 @@ Click the language picker at the top and pick a language you don't
 already have translations for (e.g. **Polish**). The grid now shows
 source on the left, target column on the right, empty.
 
+![The target-language picker showing every enabled locale with its coverage bar.](../../../assets/screenshots/03-select-target-language.png)
+
+Each row shows how many of the translatable entries are already
+covered in that language — a quick way to spot which locales need
+attention.
+
 ## 5. Translate
 
 Click **AI all** on the top bar. A dialog appears asking which AI

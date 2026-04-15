@@ -3,6 +3,8 @@ title: Mistral
 description: Mistral is EU-only — headquartered in France, EU data centers, ideal for data-residency-strict deployments.
 ---
 
+<img src="/engine-logos/mistral.svg" alt="Mistral logo" width="96" height="96" />
+
 Mistral is the privacy-first option. It's headquartered in France,
 runs on EU infrastructure, and is the right pick if your legal
 team has told you "nothing leaves the EU".

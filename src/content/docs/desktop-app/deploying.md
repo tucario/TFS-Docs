@@ -22,6 +22,8 @@ deploy is rolled back** and you see a dialog listing every
 component that failed and why. Your org is never left in a
 half-applied state.
 
+![The deploy dialog while TranSFlator is pushing 273 modified translations to the DQS Playground org.](../../../assets/screenshots/06-deploying-to-salesforce.png)
+
 ## Component-level errors
 
 The error view shows:
@@ -46,8 +48,13 @@ Every deploy is recorded in the local `deployment_log` table with
 timestamp, connection, number of components, and the final status.
 Nothing is sent to our backend.
 
-:::note[TODO]
-Screenshot of a successful deploy, screenshot of a partial-failure
-dialog with the skip-and-retry button, note about the 5 MB metadata
-zip size limit for very large deploys.
-:::
+When the deploy finishes you get a summary showing how many
+components were actually applied and how many were skipped because
+Salesforce's API refuses to touch them (for example standard
+picklists whose values are owned by the platform):
+
+![The "Deploy Complete" summary with 243 translations deployed and 30 standard picklists skipped.](../../../assets/screenshots/07-deploy-complete.png)
+
+Skipped entries can be exported via **Generate STF** and imported
+with the Salesforce Translation Workbench, which is the only tool
+allowed to touch those records.

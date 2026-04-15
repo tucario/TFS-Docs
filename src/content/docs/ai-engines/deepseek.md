@@ -3,6 +3,8 @@ title: DeepSeek
 description: DeepSeek is the engine to pick when you're translating into Chinese, Japanese, Korean, or other Asian languages — and for high-volume batches.
 ---
 
+<img src="/engine-logos/deepseek.svg" alt="DeepSeek logo" width="96" height="96" />
+
 DeepSeek is the engine you pick when the target language is
 **Chinese, Japanese, Korean**, or another East / South-East
 Asian language. The model is trained with a much heavier weighting
