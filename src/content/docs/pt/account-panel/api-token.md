@@ -1,39 +1,94 @@
 ---
-title: Token de API
-description: Gere, copie, rotacione e revogue seu token de API pessoal. Usado pelo aplicativo desktop e para chamadas diretas de API.
+title: Configurações da API
+description: Seu token de API, motor de IA preferido, limites de taxa, exemplo de curl e webhook de esgotamento de créditos — tudo em uma tela.
 ---
 
-Toda conta TranSFlator possui um único **token de API** — uma longa string aleatória que autentica sua conta no backend do TranSFlator para chamadas de API de tradução.
+**API Settings** na barra lateral esquerda é o painel de controle
+para uso direto da API. O aplicativo desktop lê a maioria desses
+mesmos valores em seu nome; a tela existe para quando você quiser
+chamar a API você mesmo a partir de um CI, script ou integração
+de terceiros.
 
-Normalmente, você não precisa se preocupar com isso. O aplicativo desktop o utiliza automaticamente quando você faz login. A única vez que você interage diretamente com ele é quando deseja chamar a API de tradução a partir do seu próprio código (por exemplo, em um pipeline de CI/CD).
+![A tela API Settings — card API Token com um token mascarado e botões Copy/Rotate Token, card AI Credits mostrando 5.000 de 5.000 caracteres restantes com data de renovação, seletor AI Engine com pills Gemini/Claude/Mistral/DeepSeek, um card Rate Limit mostrando 60 req/min, um card de exemplo cURL e um input Depletion Webhook.](../../../../assets/screenshots/panel/api-settings.png)
 
-## Onde ele fica
+## Token de API
 
-No painel → **Perfil → Token de API**. O token é exibido com um botão **Copiar** e um botão **Regerar**.
+Cada conta TranSFlator tem um único token de API — uma longa
+string aleatória que autentica sua conta contra a API de
+tradução.
 
-## Regerar (rotacionar)
+O card do token mostra o valor atual mascarado por padrão, com
+duas ações:
 
-Clique em **Regerar** para invalidar o token atual e emitir um novo. Use isso se achar que o token vazou — foi enviado para um repositório público, postado em um chat, deixado em um arquivo de log — ou simplesmente como parte de um cronograma regular de rotação.
+- **Copy** — copia o token completo para a área de transferência.
+  Trate-o como uma senha.
+- **Rotate Token** — invalida o token atual e emite um novo.
+  Use isso se você suspeitar que o token vazou (enviado para um
+  repositório público, postado em chat, deixado em um arquivo de
+  log) ou como parte de uma política de rotação regular.
 
-Após a regeneração, qualquer aplicativo desktop que já esteja logado com o token antigo receberá um erro `401 Unauthorized` em sua próxima chamada de API e solicitará que você faça login novamente.
+Após a rotação, qualquer aplicativo desktop ou script que ainda
+carregue o token antigo receberá `HTTP 401 Unauthorized` na
+próxima chamada e precisará fazer login / ter sua configuração
+atualizada.
 
-## Usando diretamente
+## Créditos de IA
 
-Envie-o como um token Bearer no cabeçalho `Authorization` ao chamar nossa API de tradução:
+Um espelho do card de saldo do painel, exibido aqui porque
+usuários diretos da API geralmente querem vê-lo ao lado do token
+e do seletor de motor. Mostra os caracteres restantes, o limite
+do plano e a data de renovação.
+
+## Motor de IA
+
+Escolha qual modelo alimenta traduções iniciadas pela API:
+
+- **Gemini** — o modelo multilíngue de uso geral do Google.
+- **Claude** — Anthropic, com nuance e consciência de contexto.
+- **Mistral** — europeu, amigável ao GDPR, forte em idiomas da UE.
+- **DeepSeek** — com bom custo-benefício e forte em CJK.
+
+A seleção se aplica a toda chamada `POST /translate/batch` que
+não sobrescreva `engine` em seu corpo. Alterar o motor aqui
+também atualiza seu `preferred_ai_model` no documento de usuário,
+então o aplicativo desktop o adota na próxima vez em que ele
+hidratar.
+
+## Limite de taxa
+
+Mostra seu limite de taxa atual por token (por padrão 60 req/min).
+Bursts acima disso retornam `HTTP 429 Too Many Requests` — recue
+e tente novamente. O limite é aplicado por token de API, não por
+IP, então rotacionar tokens não o redefine.
+
+## Exemplo cURL
+
+Uma chamada pronta para colar, pré-preenchida com seu token e
+apontando para o endpoint de tradução em lote:
 
 ```bash
-curl -X POST https://transflator-api.web.app/translate/batch \
-  -H "Authorization: Bearer <SEU_TOKEN_DE_API>" \
+curl -X POST https://api.transflator.com/translate \
+  -H "Authorization: Bearer <YOUR_API_TOKEN>" \
   -H "Content-Type: application/json" \
-  -d '{
-    "strings": ["Account name", "Industry", "Annual revenue"],
-    "target_language": "pt",
-    "engine": "gemini"
-  }'
+  -d '{"text":"Hello world","source_lang":"en","target_lang":"pl"}'
 ```
 
-A resposta é um array JSON de strings traduzidas na mesma ordem da entrada.
+Clique em **Copy** no card para pegá-lo com seu token real
+substituído. A resposta é um objeto JSON com a string traduzida
+e metadados sobre qual motor a produziu.
 
-:::note[TODO]
-Referência completa da API com todos os endpoints (`/translate/batch`, `/me`, `/packages`), códigos de erro, limites de taxa. Isso se tornará uma seção própria.
-:::
+## Webhook de esgotamento
+
+Opcional. Cole uma URL HTTPS e nós faremos um POST com um payload
+JSON para ela quando seu saldo de créditos chegar a zero. Útil
+para:
+
+- Alertar um plantão quando uma integração de API em produção
+  ficar sem créditos.
+- Disparar uma recarga automática no seu próprio sistema de
+  faturamento.
+- Enviar uma notificação para o Slack via um webhook de entrada.
+
+Deixe o campo em branco para desativar. O webhook dispara uma vez
+por evento de esgotamento (não em cada 429 posterior); ele rearma
+na próxima recarga ou renovação.

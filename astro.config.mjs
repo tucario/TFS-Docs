@@ -7,6 +7,11 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Transflator Docs',
+      favicon: '/favicon.svg',
+      head: [
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' } },
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/favicon.png' } },
+      ],
       locales: {
         root: {
           label: 'English',
@@ -34,10 +39,12 @@ export default defineConfig({
             {
               label: 'Account panel',
               items: [
-                { label: 'Sign up & verify email', slug: 'account-panel/sign-up' },
+                { label: 'Sign up & sign in', slug: 'account-panel/sign-up' },
+                { label: 'Dashboard', slug: 'account-panel/dashboard' },
                 { label: 'AI credits', slug: 'account-panel/ai-credits' },
                 { label: 'Buying credits', slug: 'account-panel/buying-credits' },
-                { label: 'API token', slug: 'account-panel/api-token' },
+                { label: 'API settings', slug: 'account-panel/api-token' },
+                { label: 'Profile', slug: 'account-panel/profile' },
                 { label: 'Delete your account', slug: 'account-panel/delete-account' },
               ],
             },
@@ -91,10 +98,12 @@ export default defineConfig({
             {
               label: 'Kontopanel',
               items: [
-                { label: 'Registrieren & E-Mail bestätigen', slug: 'account-panel/sign-up' },
+                { label: 'Registrieren & Anmelden', slug: 'account-panel/sign-up' },
+                { label: 'Dashboard', slug: 'account-panel/dashboard' },
                 { label: 'KI-Guthaben', slug: 'account-panel/ai-credits' },
                 { label: 'Guthaben kaufen', slug: 'account-panel/buying-credits' },
-                { label: 'API-Token', slug: 'account-panel/api-token' },
+                { label: 'API-Einstellungen', slug: 'account-panel/api-token' },
+                { label: 'Profil', slug: 'account-panel/profile' },
                 { label: 'Konto löschen', slug: 'account-panel/delete-account' },
               ],
             },
@@ -148,10 +157,12 @@ export default defineConfig({
             {
               label: 'Panneau de compte',
               items: [
-                { label: 'S\'inscrire et vérifier l\'e-mail', slug: 'account-panel/sign-up' },
+                { label: 'S\'inscrire et se connecter', slug: 'account-panel/sign-up' },
+                { label: 'Tableau de bord', slug: 'account-panel/dashboard' },
                 { label: 'Crédits IA', slug: 'account-panel/ai-credits' },
                 { label: 'Acheter des crédits', slug: 'account-panel/buying-credits' },
-                { label: 'Jeton API', slug: 'account-panel/api-token' },
+                { label: 'Paramètres API', slug: 'account-panel/api-token' },
+                { label: 'Profil', slug: 'account-panel/profile' },
                 { label: 'Supprimer votre compte', slug: 'account-panel/delete-account' },
               ],
             },
@@ -205,10 +216,12 @@ export default defineConfig({
             {
               label: 'Panel de cuenta',
               items: [
-                { label: 'Registrarse y verificar correo electrónico', slug: 'account-panel/sign-up' },
+                { label: 'Registrarse e iniciar sesión', slug: 'account-panel/sign-up' },
+                { label: 'Panel principal', slug: 'account-panel/dashboard' },
                 { label: 'Créditos de IA', slug: 'account-panel/ai-credits' },
                 { label: 'Comprar créditos', slug: 'account-panel/buying-credits' },
-                { label: 'Token de API', slug: 'account-panel/api-token' },
+                { label: 'Configuración de API', slug: 'account-panel/api-token' },
+                { label: 'Perfil', slug: 'account-panel/profile' },
                 { label: 'Eliminar su cuenta', slug: 'account-panel/delete-account' },
               ],
             },
@@ -262,10 +275,12 @@ export default defineConfig({
             {
               label: 'アカウントパネル',
               items: [
-                { label: 'サインアップとメール確認', slug: 'account-panel/sign-up' },
+                { label: 'サインアップとサインイン', slug: 'account-panel/sign-up' },
+                { label: 'ダッシュボード', slug: 'account-panel/dashboard' },
                 { label: 'AIクレジット', slug: 'account-panel/ai-credits' },
                 { label: 'クレジットの購入', slug: 'account-panel/buying-credits' },
-                { label: 'APIトークン', slug: 'account-panel/api-token' },
+                { label: 'API設定', slug: 'account-panel/api-token' },
+                { label: 'プロフィール', slug: 'account-panel/profile' },
                 { label: 'アカウントを削除する', slug: 'account-panel/delete-account' },
               ],
             },
@@ -319,10 +334,12 @@ export default defineConfig({
             {
               label: 'Painel da conta',
               items: [
-                { label: 'Inscrever-se e verificar e-mail', slug: 'account-panel/sign-up' },
+                { label: 'Inscrever-se e entrar', slug: 'account-panel/sign-up' },
+                { label: 'Painel', slug: 'account-panel/dashboard' },
                 { label: 'Créditos de IA', slug: 'account-panel/ai-credits' },
                 { label: 'Comprar créditos', slug: 'account-panel/buying-credits' },
-                { label: 'Token de API', slug: 'account-panel/api-token' },
+                { label: 'Configurações da API', slug: 'account-panel/api-token' },
+                { label: 'Perfil', slug: 'account-panel/profile' },
                 { label: 'Excluir sua conta', slug: 'account-panel/delete-account' },
               ],
             },
@@ -376,10 +393,12 @@ export default defineConfig({
             {
               label: 'Panel konta',
               items: [
-                { label: 'Zarejestruj się i zweryfikuj e-mail', slug: 'account-panel/sign-up' },
+                { label: 'Rejestracja i logowanie', slug: 'account-panel/sign-up' },
+                { label: 'Dashboard', slug: 'account-panel/dashboard' },
                 { label: 'Kredyty AI', slug: 'account-panel/ai-credits' },
                 { label: 'Kupowanie kredytów', slug: 'account-panel/buying-credits' },
-                { label: 'Token API', slug: 'account-panel/api-token' },
+                { label: 'Ustawienia API', slug: 'account-panel/api-token' },
+                { label: 'Profil', slug: 'account-panel/profile' },
                 { label: 'Usuń swoje konto', slug: 'account-panel/delete-account' },
               ],
             },
@@ -434,10 +453,12 @@ export default defineConfig({
             {
               label: 'لوحة الحساب',
               items: [
-                { label: 'التسجيل والتحقق من البريد الإلكتروني', slug: 'account-panel/sign-up' },
+                { label: 'التسجيل وتسجيل الدخول', slug: 'account-panel/sign-up' },
+                { label: 'لوحة التحكم', slug: 'account-panel/dashboard' },
                 { label: 'رصيد الذكاء الاصطناعي', slug: 'account-panel/ai-credits' },
                 { label: 'شراء الرصيد', slug: 'account-panel/buying-credits' },
-                { label: 'رمز API', slug: 'account-panel/api-token' },
+                { label: 'إعدادات API', slug: 'account-panel/api-token' },
+                { label: 'الملف الشخصي', slug: 'account-panel/profile' },
                 { label: 'حذف حسابك', slug: 'account-panel/delete-account' },
               ],
             },

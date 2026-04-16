@@ -1,54 +1,87 @@
 ---
-title: API token
-description: Generate, copy, rotate, and revoke your personal API token. Used by the desktop app and for direct API calls.
+title: API settings
+description: Your API token, preferred AI engine, rate limits, curl example, and credit-depletion webhook — all on one screen.
 ---
 
-Every TranSFlator account has a single **API token** — a long random
-string that authenticates your account against the TranSFlator
-backend for translation API calls.
+**API Settings** in the left sidebar is the control panel for
+direct API usage. The desktop app reads most of these same values
+on your behalf; the screen exists for when you want to call the
+API yourself from CI, a script, or a third-party integration.
 
-You don't normally need to think about it. The desktop app uses it
-automatically when you sign in. The only time you interact with it
-directly is when you want to call the translation API from your
-own code (e.g. a CI/CD pipeline).
+![The API Settings screen — API Token card with a masked token and Copy/Rotate Token buttons, AI Credits card showing 5,000 of 5,000 characters remaining with a renewal date, AI Engine selector with Gemini/Claude/Mistral/DeepSeek pills, a Rate Limit card showing 60 req/min, a cURL example card, and a Depletion Webhook input.](../../../assets/screenshots/panel/api-settings.png)
 
-## Where it lives
+## API token
 
-On the panel → **Profile → API token**. The token is shown with a
-**Copy** button and a **Regenerate** button.
+Every TranSFlator account has a single API token — a long
+random string that authenticates your account against the
+translation API.
 
-## Regenerate (rotate)
+The token card shows the current value masked by default, with
+two actions:
 
-Click **Regenerate** to invalidate the current token and issue a
-new one. Use this if you think the token has leaked — pushed to a
-public repo, posted in chat, left in a log file — or simply as
-part of a regular rotation schedule.
+- **Copy** — copies the full token to the clipboard. Treat it
+  like a password.
+- **Rotate Token** — invalidates the current token and issues a
+  new one. Use this if you suspect the token has leaked (pushed
+  to a public repo, posted in chat, left in a log file) or as
+  part of a regular rotation policy.
 
-After regeneration, any desktop app already signed in with the
-old token will get a `401 Unauthorized` on its next API call and
-will prompt you to sign back in.
+After rotation, any desktop app or script still carrying the old
+token will get `HTTP 401 Unauthorized` on its next call and will
+need to sign in / have its config updated.
 
-## Using it directly
+## AI credits
 
-Send it as a Bearer token in the `Authorization` header when
-calling our translation API:
+A mirror of the dashboard balance card, surfaced here because
+direct API users often want it next to the token and the engine
+picker. Shows characters remaining, plan cap, and renewal date.
+
+## AI engine
+
+Pick which model powers translations initiated through the API:
+
+- **Gemini** — Google's general-purpose multilingual model.
+- **Claude** — Anthropic, nuanced and context-aware.
+- **Mistral** — European, GDPR-friendly, strong on EU languages.
+- **DeepSeek** — cost-effective and strong on CJK.
+
+The selection applies to every `POST /translate/batch` call that
+doesn't override `engine` in its body. Changing the engine here
+also updates your `preferred_ai_model` on the user document, so
+the desktop app picks it up the next time it hydrates.
+
+## Rate limit
+
+Shows your current per-token rate limit (by default 60 req/min).
+Bursts above this return `HTTP 429 Too Many Requests` — back off
+and retry. The limit is enforced per API token, not per IP, so
+rotating tokens doesn't reset it.
+
+## cURL example
+
+A ready-to-paste example call, pre-filled with your token and
+pointing at the batch translate endpoint:
 
 ```bash
-curl -X POST https://transflator-api.web.app/translate/batch \
+curl -X POST https://api.transflator.com/translate \
   -H "Authorization: Bearer <YOUR_API_TOKEN>" \
   -H "Content-Type: application/json" \
-  -d '{
-    "strings": ["Account name", "Industry", "Annual revenue"],
-    "target_language": "pl",
-    "engine": "gemini"
-  }'
+  -d '{"text":"Hello world","source_lang":"en","target_lang":"pl"}'
 ```
 
-The response is a JSON array of translated strings in the same
-order as the input.
+Click **Copy** on the card to grab it with your real token
+substituted in. The response is a JSON object with the
+translated string and metadata about which engine produced it.
 
-:::note[TODO]
-Full API reference with every endpoint (`/translate/batch`, `/me`,
-`/packages`), error codes, rate limits. This will become its own
-section.
-:::
+## Depletion webhook
+
+Optional. Paste an HTTPS URL and we'll POST a JSON payload to it
+when your credit balance hits zero. Useful for:
+
+- Paging an on-call when a production API integration runs dry.
+- Triggering an auto-top-up in your own billing system.
+- Kicking a notification into Slack via an incoming webhook.
+
+Leave the field blank to disable. The webhook fires once per
+depletion event (not on every 429 afterwards); it re-arms on the
+next top-up or renewal.

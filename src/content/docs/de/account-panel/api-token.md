@@ -1,39 +1,104 @@
 ---
-title: API-Token
-description: Generieren, kopieren, rotieren und widerrufen Sie Ihren persönlichen API-Token. Wird von der Desktop-App und für direkte API-Aufrufe verwendet.
+title: API-Einstellungen
+description: Ihr API-Token, bevorzugte KI-Engine, Ratenlimits, cURL-Beispiel und Webhook bei Guthabenerschöpfung — alles auf einem Bildschirm.
 ---
 
-Jedes Transflator-Konto verfügt über einen einzigen **API-Token** — eine lange Zufallszeichenfolge, die Ihr Konto gegenüber dem Transflator-Backend für Übersetzungs-API-Aufrufe authentifiziert.
+**API Settings** in der linken Seitenleiste ist das
+Steuerungs-Panel für die direkte API-Nutzung. Die Desktop-App
+liest die meisten dieser Werte in Ihrem Namen; der Bildschirm
+existiert für den Fall, dass Sie die API selbst von einer CI,
+einem Skript oder einer Drittanbieterintegration aus aufrufen
+möchten.
 
-Normalerweise müssen Sie sich nicht darum kümmern. Die Desktop-App verwendet ihn automatisch, wenn Sie sich anmelden. Das einzige Mal, dass Sie direkt damit interagieren, ist, wenn Sie die Übersetzungs-API aus Ihrem eigenen Code heraus aufrufen möchten (z. B. in einer CI/CD-Pipeline).
+![Der Bildschirm „API Settings" — eine API-Token-Karte mit maskiertem Token und Schaltflächen „Copy"/„Rotate Token", eine AI-Credits-Karte mit 5.000 von 5.000 verbleibenden Zeichen und einem Erneuerungsdatum, ein AI-Engine-Selektor mit Pills für Gemini/Claude/Mistral/DeepSeek, eine Rate-Limit-Karte mit 60 req/min, eine Karte mit cURL-Beispiel und ein Eingabefeld für den Depletion Webhook.](../../../../assets/screenshots/panel/api-settings.png)
 
-## Wo er sich befindet
+## API-Token
 
-Im Panel unter **Profil → API-Token**. Der Token wird mit einer Schaltfläche **Kopieren** und einer Schaltfläche **Neu generieren** angezeigt.
+Jedes TranSFlator-Konto verfügt über einen einzigen API-Token —
+eine lange zufällige Zeichenkette, die Ihr Konto gegenüber der
+Übersetzungs-API authentifiziert.
 
-## Neu generieren (Rotieren)
+Die Token-Karte zeigt den aktuellen Wert standardmäßig maskiert
+an, mit zwei Aktionen:
 
-Klicken Sie auf **Neu generieren**, um den aktuellen Token ungültig zu machen und einen neuen auszugeben. Verwenden Sie dies, wenn Sie vermuten, dass der Token geleakt wurde — in ein öffentliches Repo hochgeladen, in einem Chat gepostet, in einer Logdatei hinterlassen — oder einfach als Teil eines regelmäßigen Rotationsplans.
+- **Copy** — kopiert den vollständigen Token in die
+  Zwischenablage. Behandeln Sie ihn wie ein Passwort.
+- **Rotate Token** — macht den aktuellen Token ungültig und
+  stellt einen neuen aus. Verwenden Sie dies, wenn Sie vermuten,
+  dass der Token durchgesickert ist (in ein öffentliches Repo
+  gepusht, in einem Chat gepostet, in einer Log-Datei
+  hinterlassen) oder als Teil einer regelmäßigen
+  Rotationsrichtlinie.
 
-Nach der Neugenerierung erhält jede Desktop-App, die bereits mit dem alten Token angemeldet ist, beim nächsten API-Aufruf ein `401 Unauthorized` und fordert Sie auf, sich erneut anzumelden.
+Nach der Rotation erhält jede Desktop-App oder jedes Skript,
+das den alten Token noch verwendet, beim nächsten Aufruf
+`HTTP 401 Unauthorized` und muss sich erneut anmelden bzw. seine
+Konfiguration aktualisieren.
 
-## Direkte Verwendung
+## KI-Guthaben
 
-Senden Sie ihn als Bearer-Token im `Authorization`-Header, wenn Sie unsere Übersetzungs-API aufrufen:
+Ein Spiegel der Guthabenkarte aus dem Dashboard, hier
+angezeigt, weil Direkt-API-Nutzer sie oft neben dem Token und
+dem Engine-Picker haben möchten. Zeigt verbleibende Zeichen,
+Plan-Obergrenze und Erneuerungsdatum an.
+
+## KI-Engine
+
+Wählen Sie aus, welches Modell über die API initiierte
+Übersetzungen antreibt:
+
+- **Gemini** — Googles mehrsprachiges Allzweckmodell.
+- **Claude** — Anthropic, nuanciert und kontextbewusst.
+- **Mistral** — europäisch, GDPR-freundlich, stark bei
+  EU-Sprachen.
+- **DeepSeek** — kosteneffizient und stark bei CJK.
+
+Die Auswahl gilt für jeden `POST /translate/batch`-Aufruf, der
+`engine` nicht im Body überschreibt. Wenn Sie die Engine hier
+ändern, wird auch Ihr `preferred_ai_model` im Benutzerdokument
+aktualisiert, sodass die Desktop-App dies beim nächsten
+Hydratisieren übernimmt.
+
+## Ratenlimit
+
+Zeigt Ihr aktuelles Ratenlimit pro Token an (standardmäßig
+60 req/min). Bursts oberhalb dieser Grenze geben
+`HTTP 429 Too Many Requests` zurück — warten Sie einen Moment und
+versuchen Sie es erneut. Das Limit wird pro API-Token
+durchgesetzt, nicht pro IP, sodass eine Token-Rotation es nicht
+zurücksetzt.
+
+## cURL-Beispiel
+
+Ein sofort einsatzbereites Beispielaufruf, vorausgefüllt mit
+Ihrem Token und gerichtet an den Batch-Translate-Endpunkt:
 
 ```bash
-curl -X POST https://transflator-api.web.app/translate/batch \
-  -H "Authorization: Bearer <IHR_API_TOKEN>" \
+curl -X POST https://api.transflator.com/translate \
+  -H "Authorization: Bearer <YOUR_API_TOKEN>" \
   -H "Content-Type: application/json" \
-  -d '{
-    "strings": ["Account name", "Industry", "Annual revenue"],
-    "target_language": "pl",
-    "engine": "gemini"
-  }'
+  -d '{"text":"Hello world","source_lang":"en","target_lang":"pl"}'
 ```
 
-Die Antwort ist ein JSON-Array mit übersetzten Zeichenfolgen in der gleichen Reihenfolge wie die Eingabe.
+Klicken Sie auf **Copy** auf der Karte, um ihn mit Ihrem echten
+Token ersetzt zu übernehmen. Die Antwort ist ein JSON-Objekt mit
+der übersetzten Zeichenkette und Metadaten darüber, welche
+Engine sie erzeugt hat.
 
-:::note[TODO]
-Vollständige API-Referenz mit jedem Endpunkt (`/translate/batch`, `/me`, `/packages`), Fehlercodes, Ratenbegrenzungen. Dies wird ein eigener Abschnitt werden.
-:::
+## Depletion-Webhook
+
+Optional. Fügen Sie eine HTTPS-URL ein, an die wir eine
+JSON-Payload per POST senden, wenn Ihr Guthaben auf null fällt.
+Nützlich für:
+
+- Ein On-Call-Team zu benachrichtigen, wenn eine
+  Produktions-API-Integration leer läuft.
+- Ein automatisches Top-up in Ihrem eigenen Abrechnungssystem
+  auszulösen.
+- Eine Benachrichtigung über einen eingehenden Webhook in Slack
+  einzuschleusen.
+
+Lassen Sie das Feld leer, um die Funktion zu deaktivieren. Der
+Webhook wird einmal pro Erschöpfungsereignis ausgelöst (nicht
+bei jedem anschließenden 429); er wird beim nächsten Top-up
+oder bei der nächsten Erneuerung neu aktiviert.
